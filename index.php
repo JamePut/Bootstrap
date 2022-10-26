@@ -20,7 +20,7 @@
             <h1><center>Webboard JamePut</center></h1>
                 <?php include "nav.php"; ?>
                 <br>
-                <div class="d-flex">
+                <div class="d-flex justify-content-between">
                     <div>
                         <label>หมวดหมู่</label>
                             <span class="dropdown">
@@ -53,7 +53,7 @@
             <h1><center>Webboard JamePut</center></h1>
             <?php include "nav.php"; ?>
             <br>
-                <div class="d-flex">
+                <div class="d-flex justify-content-between">
                     <div>
                         <label>หมวดหมู่</label>
                             <span class="dropdown">
@@ -67,28 +67,21 @@
                                 </ul>
                             </span>
                     </div>
+                    <div><a href="newpost.php" class="btn btn-success btn-sm"><i class="bi bi-plus"></i>สร้างกระทู้ใหม่</a></div>
                 </div>
-            <div style="float:right">
-                <?php
-                    echo "ผู้ใช้งานระบบ : ".$_SESSION["username"];
-                ?>
-                <a href="logout.php" target=""> ออกจากระบบ </a>
-            </div>
             <br>
-            <a href="newpost.php" target=""> สร้างกระทู้ใหม่ </a>
-            <br>
-            <ul><form action="post.php" method="get">
+            <table class="table table-striped">
+            <form action="post.php" method="get">
             <?php
                 for($i=1; $i<=10; $i++){
-                    echo "<li>";
-                    echo "<a href=post.php?id="."$i"."> กระทู้ที่ ".$i."</a>";
-                    if($_SESSION["role"]=="a"){
-                        echo "&nbsp;&nbsp;<a href=delete.php?id="."$i"."> ลบ</a>";
+                    echo "<tr><td><a href=post.php?id=$i style=text-decoration:none>กระทู้ที่ $i</a></td>";
+                    if($_SESSION['role']=='a'){
+                        echo "<td><a href=delete.php?id=$i class='btn btn-danger btn-sm'><i class='bi bi-trash'></i></a></td>";
                     }
+                    echo "</tr>";
                 }
-                echo "</li>";
             ?>
-            </form></ul>
+            </form></table>
         </div>
     </body>
     <?php
